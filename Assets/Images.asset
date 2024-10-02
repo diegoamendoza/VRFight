@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: Images
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4925835221969282819
+  m_GuidHigh: 14857490903974356629
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5364741254654437617
+      m_GuidHigh: 15088146941898946491
+    m_SerializedTextureGuid:
+      m_GuidLow: 992004482310551876
+      m_GuidHigh: 2518146264398927851
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: head-a
+    m_Texture: {fileID: 2800000, guid: 1fb739444ed20dc4eb97f98daf40f222, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4820490893226892666
+      m_GuidHigh: 5131581941129033910
+    m_SerializedTextureGuid:
+      m_GuidLow: 18236348528341788531
+      m_GuidHigh: 10245284931278067016
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: body-a
+    m_Texture: {fileID: 2800000, guid: c007a773865dfd1448d57df75c902e8e, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4991796139104179745
+      m_GuidHigh: 8801049534821501840
+    m_SerializedTextureGuid:
+      m_GuidLow: 11656496137833345217
+      m_GuidHigh: 3393672852080403770
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: legs-a
+    m_Texture: {fileID: 2800000, guid: 8544f0c1317aa1c43aa523807abf182f, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4837627795175479226
+      m_GuidHigh: 18373970759413276602
+    m_SerializedTextureGuid:
+      m_GuidLow: 4675941052890128793
+      m_GuidHigh: 4440863878595522760
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: head-b
+    m_Texture: {fileID: 2800000, guid: 082ea199479d40e4c8b08c3b2b1ea13d, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5317010010153912793
+      m_GuidHigh: 6812764544336813208
+    m_SerializedTextureGuid:
+      m_GuidLow: 1599929574490300801
+      m_GuidHigh: 11184160180611199528
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: body-b
+    m_Texture: {fileID: 2800000, guid: a122e18117781634283266946d1e369b, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5206693930425532074
+      m_GuidHigh: 405301210411037092
+    m_SerializedTextureGuid:
+      m_GuidLow: 6279335002404601165
+      m_GuidHigh: 2121056609272799896
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: legs-b
+    m_Texture: {fileID: 2800000, guid: 5400bd4dadea572498223390bf816f1d, type: 3}
