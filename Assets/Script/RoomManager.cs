@@ -16,7 +16,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject waitingUI2; // UI para "Esperando un jugador"
     public TMP_Text waitingText; // Texto para mostrar el mensaje de espera
     public TMP_Text waitingText2; // Texto para mostrar el mensaje de espera
-    public Image qrCodeImage; // Imagen donde se mostrará el QR
+   // public Image qrCodeImage; // Imagen donde se mostrará el QR
+    public TMP_Text codetext, codetext2;
     public float waitTime = 2f; // Tiempo antes de cambiar a la escena de pelea
 
     void Start()
@@ -34,7 +35,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         // Desactivar la UI de espera y el QR al inicio
         waitingUI.SetActive(false);
         waitingUI2.SetActive(false);
-        qrCodeImage.gameObject.SetActive(false);
+       
+        codetext.gameObject.SetActive(true);
+        codetext2.gameObject.SetActive(true);
     }
 
     void CreateRoom()
@@ -44,7 +47,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Debug.LogError("No estás conectado a Photon. Conéctate primero.");
             return; // Salir del método si no estás conectado
         }
-        roomName = "Sala_" + Random.Range(1000, 9999);
+        roomName = Random.Range(1000, 9999).ToString();
         // Crear una nueva sala con un nombre aleatorio
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2; // Establecer el número máximo de jugadores en la sala
@@ -61,9 +64,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
         waitingUI2.SetActive(true);
         waitingText.text = "Waiting for other player...";
         waitingText2.text = "Waiting for other player...";
-
+        codetext.text = roomName;
+        codetext2.text = roomName;
+        codetext2.gameObject.SetActive(true);
         // Generar y mostrar el QR
-        GenerateQRCode(roomName);
+        
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
@@ -89,16 +94,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Error al crear la sala: " + message);
         // Podrías manejar el error aquí, tal vez intentar crear otra sala o mostrar un mensaje al usuario
     }
-
-    private void GenerateQRCode(string roomName)
+    public void ConnectToRoom(string roomName)
     {
-        QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        QRCodeData qrCodeData = qrGenerator.CreateQrCode(roomName, QRCodeGenerator.ECCLevel.Q);
-        UnityQRCode qrCode = new UnityQRCode(qrCodeData);
-        Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
-
-        // Asignar la textura generada a la imagen de la UI
-        qrCodeImage.sprite = Sprite.Create(qrCodeAsTexture2D, new Rect(0, 0, qrCodeAsTexture2D.width, qrCodeAsTexture2D.height), new Vector2(0.5f, 0.5f));
-        qrCodeImage.gameObject.SetActive(true); // Asegurarse de que la imagen sea visible
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.JoinRoom(roomName);
+        }
+        else
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.NickName = "Player_" + UnityEngine.Random.Range(1000, 9999);
+        }
     }
 }

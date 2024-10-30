@@ -108,24 +108,5 @@ public class ScanQRCode : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("FightScene");
     }
 
-    private void OnGUI()
-    {
-        int w = Screen.width, h = Screen.height;
 
-        GUIStyle style = new GUIStyle();
-        Rect rect = new Rect(0, 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h * 2 / 50;
-        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
-
-        string text = string.IsNullOrEmpty(QrCode) ? "Scanning QR..." : "QR: " + QrCode;
-        GUI.Label(rect, text, style);
-
-        if (!string.IsNullOrEmpty(errorMessage))
-        {
-            Rect errorRect = new Rect(0, h / 10, w, h * 2 / 100);
-            style.normal.textColor = Color.red;
-            GUI.Label(errorRect, errorMessage, style);
-        }
-    }
 }
