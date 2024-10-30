@@ -15,6 +15,7 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - 9cfd5db41d43d244291bb1162973d8cc
+    - 65092dcd14028d6498d4a969476bd544
     values:
     - goDatas_byGlobalId:
         keys:
@@ -30,11 +31,18 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1257102551-0
         - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1274660768-0
         - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-35878203-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-2052788893-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-810273653-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-665537701-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1885605786-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1359936968-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1493899931-0
+        - globalObjectIdString: GlobalObjectId_V1-2-9cfd5db41d43d244291bb1162973d8cc-1682225920-0
         values:
         - colorIndex: 7
           iconNameOrGuid: Canvas Icon
         - colorIndex: 3
-          iconNameOrGuid: 
+          iconNameOrGuid: PreMatCube
         - colorIndex: 1
           iconNameOrGuid: 
         - colorIndex: 7
@@ -52,6 +60,59 @@ MonoBehaviour:
         - colorIndex: 1
           iconNameOrGuid: 
         - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 6
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 3
+          iconNameOrGuid: 
+        - colorIndex: 4
+          iconNameOrGuid: 
+        - colorIndex: 8
+          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 7
+          iconNameOrGuid: 
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-1010471332-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-1579494945-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-12484514-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-1299779692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-2020285120-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-2913197537006377330-1502472324
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-2913197537006377330-256447540
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-866679383-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-2913197537006377330-38538533
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-440783829-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-624064232-0
+        - globalObjectIdString: GlobalObjectId_V1-2-65092dcd14028d6498d4a969476bd544-718945730-0
+        values:
+        - colorIndex: 7
+          iconNameOrGuid: 
+        - colorIndex: 8
+          iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 8
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 8
+          iconNameOrGuid: cs Script Icon
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 7
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
+        - colorIndex: 8
+          iconNameOrGuid: Settings Icon
+        - colorIndex: 3
+          iconNameOrGuid: 
+        - colorIndex: 1
+          iconNameOrGuid: 
+        - colorIndex: 2
           iconNameOrGuid: 
         - colorIndex: 6
           iconNameOrGuid: 
