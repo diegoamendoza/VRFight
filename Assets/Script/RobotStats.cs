@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewRobot", menuName = "Robot/RobotStats")]
-public class RobotStats : ScriptableObject
+
+public class RobotStats : MonoBehaviour
 {
     public string robotName;
     public int attack;

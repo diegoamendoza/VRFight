@@ -2086,10 +2086,9 @@ GameObject:
   - component: {fileID: 5340342997610613674}
   - component: {fileID: 3738520102414204212}
   - component: {fileID: 5109309391389221355}
-  - component: {fileID: 5361691621178739326}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Arena
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2162,19 +2161,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5361691621178739326
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8244905412312237376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.010027606, y: 0.009803422, z: 0.0003591392}
-  m_Center: {x: -0.00011209428, y: -0.00008967608, z: 0.0004926518}
 --- !u!1 &8441649608653671029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9109958767389069519}
+  - component: {fileID: 591220565103791894}
   m_Layer: 0
   m_Name: Arena1-Pfb
   m_TagString: Arena
@@ -2233,6 +2220,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &591220565103791894
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441649608653671029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9341779, y: 0.07955466, z: 0.9279091}
+  m_Center: {x: 0.0109702945, y: 0.0026970133, z: -0.0015672147}
 --- !u!1 &8795231545289847795
 GameObject:
   m_ObjectHideFlags: 0

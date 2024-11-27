@@ -40,20 +40,29 @@ public class CombatManager : MonoBehaviourPunCallbacks
     {
         if (isPlayerReady && isOpponentReady)
         {
-            StartCoroutine(BeginCombat());
+            photonView.RPC("StartCombat", RpcTarget.All); // Sincroniza el inicio del combate
         }
         else
         {
-            // statusText.text = isPlayerReady ? "Esperando al oponente..." : "Presiona 'Listo' cuando estés preparado.";
+            statusText.text = isPlayerReady ? "Esperando al oponente..." : "Presiona 'Listo' cuando estés preparado.";
+            statusText2.text = statusText.text;
         }
+    }
+
+    [PunRPC]
+    void StartCombat()
+    {
+        StartCoroutine(BeginCombat());
     }
 
     IEnumerator BeginCombat()
     {
-        // statusText.text = "¡Combate en progreso!";
+        statusText.text = "¡Combate en progreso!";
+        statusText2.text = statusText.text;
+
         yield return new WaitForSeconds(2); // Breve pausa antes de iniciar el combate
 
-        // Llama a los métodos de combate en los robots de ambos jugadores (por ejemplo, inicia sus ataques)
+        // Inicia el combate de todos los robots
         foreach (var robot in FindObjectsOfType<RobotCombat>())
         {
             robot.StartCombat();
@@ -65,14 +74,11 @@ public class CombatManager : MonoBehaviourPunCallbacks
             yield return null;
         }
 
-        EndCombat();
+        photonView.RPC("EndCombat", RpcTarget.All);
     }
-
-
 
     bool CheckForWinner()
     {
-        // Comprueba si solo quedan robots de un jugador
         int playerRobotsAlive = 0;
         int opponentRobotsAlive = 0;
 
@@ -88,6 +94,7 @@ public class CombatManager : MonoBehaviourPunCallbacks
         return playerRobotsAlive == 0 || opponentRobotsAlive == 0;
     }
 
+    [PunRPC]
     void EndCombat()
     {
         bool playerWon = CheckForWinner();
@@ -95,22 +102,22 @@ public class CombatManager : MonoBehaviourPunCallbacks
         {
             playerScore++;
             statusText.text = "¡Has ganado la ronda!";
-            statusText2.text = "¡Has ganado la ronda!";
+            statusText2.text = statusText.text;
         }
         else
         {
             opponentScore++;
             statusText.text = "Has perdido la ronda.";
-            statusText2.text = "Has perdido la ronda.";
+            statusText2.text = statusText.text;
         }
 
         // Actualiza la UI de puntaje
         playerScoreText.text = playerScore.ToString();
         playerScoreText2.text = playerScore.ToString();
-        opponentScoreText.text =  opponentScore.ToString();
-        opponentScoreText2.text =  opponentScore.ToString();
+        opponentScoreText.text = opponentScore.ToString();
+        opponentScoreText2.text = opponentScore.ToString();
 
-        // Reinicia el estado
+        // Reinicia el estado para una nueva ronda
         isPlayerReady = false;
         isOpponentReady = false;
         readyButton.interactable = true; // Reactiva el botón "Listo" para la siguiente ronda

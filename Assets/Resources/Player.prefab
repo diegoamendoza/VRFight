@@ -50,6 +50,7 @@ MonoBehaviour:
     type: 3}
   introAnimation: {fileID: 0}
   marcador: {fileID: 0}
+  arPlaneManager: {fileID: 0}
 --- !u!114 &2864706586103712194
 MonoBehaviour:
   m_ObjectHideFlags: 0

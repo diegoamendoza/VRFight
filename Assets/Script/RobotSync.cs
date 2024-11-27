@@ -12,5 +12,9 @@ public class RobotSync : MonoBehaviourPun
         Transform arenaTransform = GameObject.FindGameObjectWithTag("Arena").transform;
         transform.SetParent(arenaTransform, true);
         transform.localPosition = localPosition;
+        Debug.Log("Sincronizar");
     }
+
+
+
 }

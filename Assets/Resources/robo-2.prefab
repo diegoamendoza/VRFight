@@ -444,7 +444,8 @@ Transform:
   m_LocalPosition: {x: 0.011021996, y: -0.030484917, z: 0.044122204}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4449764088426422872}
   m_Father: {fileID: 4911713013955523292}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -592,6 +593,8 @@ GameObject:
   - component: {fileID: 4911713013955523292}
   - component: {fileID: 7005433469871646792}
   - component: {fileID: 5139432583208320644}
+  - component: {fileID: -8476744482946501678}
+  - component: {fileID: 2068323899578095631}
   m_Layer: 0
   m_Name: robo-2
   m_TagString: Untagged
@@ -658,6 +661,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1141464e6f78442b38fbba541291b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8476744482946501678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720196439700351078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8312d50259c3a6f4184193d083f00de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlayerRobot: 0
+  IsAlive: 1
+  baseHealth: 100
+  baseAttack: 10
+  projectilePrefab: {fileID: 2953018051546760960, guid: 893d53f70032e7944913e24407aba93b,
+    type: 3}
+  firePoint: {fileID: 4449764088426422872}
+  fireRate: 1
+  detectionRange: 10
+  robotStats: {fileID: 0}
+--- !u!114 &2068323899578095631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720196439700351078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4504d49ba8aa58438e00d592870d3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotName: 
+  attack: 0
+  defense: 0
+  health: 0
+  criticalChance: 0
+  criticalDamageMultiplier: 0
+  attackRange: 0
+  moveSpeed: 0
 --- !u!1 &5992891930094159909
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +869,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7640247786448964719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4449764088426422872}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4449764088426422872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640247786448964719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8078510523637571114}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8866987385106223696
 GameObject:
   m_ObjectHideFlags: 0

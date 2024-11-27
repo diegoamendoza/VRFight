@@ -15,9 +15,10 @@ public class MecanicaImage : MonoBehaviour
     public Animator cardsUIAnimator;
     public ARTrackedImageManager arTrackedImageManager;
     public TapToPlace tapToPlace;
-
+    RobotStats totalStats;
     void Awake()
     {
+        totalStats = tapToPlace.gameObject.GetComponent<RobotStats>();
         arTrackedImageManager = GetComponent<ARTrackedImageManager>();
         tapToPlace = FindObjectOfType<TapToPlace>();
 
@@ -108,19 +109,24 @@ public class MecanicaImage : MonoBehaviour
             tapToPlace.prefab = Robots[robotIndex];
 
             // Calcular las estadísticas totales del robot
-            RobotStats totalStats = new RobotStats();
-            totalStats.attack = pieceStats["head-" + headID] != null ? pieceStats["head-" + headID].attack : 0;
-            totalStats.defense = pieceStats["body-" + bodyID] != null ? pieceStats["body-" + bodyID].defense : 0;
-            totalStats.health = 100; // Valor base de salud
-            totalStats.attackRange = 5; // Valor base de rango de ataque
-            totalStats.moveSpeed = 3; // Valor base de velocidad de movimiento
+
+            tapToPlace.currentRobotStats.attack = pieceStats["head-" + headID] != null ? pieceStats["head-" + headID].attack : 0;
+            tapToPlace.currentRobotStats.defense = pieceStats["body-" + bodyID] != null ? pieceStats["body-" + bodyID].defense : 0;
+            tapToPlace.currentRobotStats.health = 100; // Valor base de salud
+            tapToPlace.currentRobotStats.attackRange = 5; // Valor base de rango de ataque
+            tapToPlace.currentRobotStats.moveSpeed = 3; // Valor base de velocidad de movimiento
 
             // Ajusta las estadísticas según las piezas
-            totalStats.attack += pieceStats["head-" + headID].attack + pieceStats["body-" + bodyID].attack;
-            totalStats.defense += pieceStats["body-" + bodyID].defense + pieceStats["legs-" + legsID].defense;
+            tapToPlace.currentRobotStats.attack += pieceStats["head-" + headID].attack + pieceStats["body-" + bodyID].attack;
+            tapToPlace.currentRobotStats.defense += pieceStats["body-" + bodyID].defense + pieceStats["legs-" + legsID].defense;
 
             tapToPlace.currentRobotStats = totalStats; // Asigna las estadísticas al prefab
             tapToPlace.isReadyToPlace = true;
+
+            tapToPlace.currentRobotStats.attack = 0;
+            tapToPlace.currentRobotStats.defense = 0;
+
+
         }
     }
 

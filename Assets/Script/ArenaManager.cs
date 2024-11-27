@@ -12,6 +12,7 @@ public class ArenaManager : MonoBehaviourPunCallbacks
     [SerializeField] public GameObject introAnimation, marcador ; // Objeto de la animación de introducción
     private FightSceneTextManager textManager; // Referencia al FightSceneTextManager
     private ARRaycastManager arRaycastManager;
+    public ARPlaneManager arPlaneManager;
     private GameObject instantiatedArena;
     private bool arenaPlaced = false;
     private bool otherPlayerReady = false;
@@ -19,6 +20,7 @@ public class ArenaManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
+        arPlaneManager = FindObjectOfType<ARPlaneManager>();
         textManager = FindObjectOfType<FightSceneTextManager>(); // Buscar el FightSceneTextManager
         // Inicializar el texto de estado
         textManager.SetStatusText("Tap on the plane to place the arena", "Tap on the plane to place the arena");
@@ -45,7 +47,7 @@ public class ArenaManager : MonoBehaviourPunCallbacks
                 {
                     instantiatedArena = Instantiate(arenaPrefab, hitPose.position, hitPose.rotation);
                     arenaPlaced = true;
-
+                    arPlaneManager.enabled = false;
                     // Notificar a otros jugadores que este jugador está listo
                     photonView.RPC("PlayerReady", RpcTarget.All, PhotonNetwork.NickName);
                 }
