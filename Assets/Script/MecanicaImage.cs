@@ -15,28 +15,31 @@ public class MecanicaImage : MonoBehaviour
     public Animator cardsUIAnimator;
     public ARTrackedImageManager arTrackedImageManager;
     public TapToPlace tapToPlace;
-    RobotStats totalStats;
+    public RobotStats totalStats;
     void Awake()
     {
-        totalStats = tapToPlace.gameObject.GetComponent<RobotStats>();
         arTrackedImageManager = GetComponent<ARTrackedImageManager>();
         tapToPlace = FindObjectOfType<TapToPlace>();
+        totalStats = tapToPlace.gameObject.GetComponent<RobotStats>();
 
         pieceIdentifiers = new Dictionary<string, int>
         {
-            { "head-a", 0 }, { "head-b", 1 },
-            { "body-a", 0 }, { "body-b", 1 },
-            { "legs-a", 0 }, { "legs-b", 1 }
+            { "head-a", 0 }, { "head-b", 1 },{"head-c",2},
+            { "body-a", 0 }, { "body-b", 1 },{"body-c", 2},
+            { "legs-a", 0 }, { "legs-b", 1 },{"legs-c",2}
         };
 
         pieceStats = new Dictionary<string, RobotStats>
         {
             { "head-0", new RobotStats { attack = 10, defense = 0 } },
-            { "head-1", new RobotStats { attack = 5, defense = 5 } },
+            { "head-1", new RobotStats { attack = 0, defense = 10 } },
+            { "head-2", new RobotStats { attack = 5, defense = 5 } },
             { "body-0", new RobotStats { attack = 0, defense = 10 } },
-            { "body-1", new RobotStats { attack = 0, defense = 7 } },
+            { "body-1", new RobotStats { attack = 0, defense = 5 } },
+            { "body-2", new RobotStats { attack = 5, defense = 5 } },
             { "legs-0", new RobotStats { attack = 0, defense = 2 } },
-            { "legs-1", new RobotStats { attack = 3, defense = 0 } }
+            { "legs-1", new RobotStats { attack = 3, defense = 0 } },
+            { "legs-2", new RobotStats { attack = 5, defense = 5 } }
         };
     }
 

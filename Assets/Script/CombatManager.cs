@@ -11,10 +11,11 @@ public class CombatManager : MonoBehaviourPunCallbacks
     public TMP_Text playerScoreText, playerScoreText2; // Cambiado a TMP_Text
     public TMP_Text opponentScoreText, opponentScoreText2; // Cambiado a TMP_Text
 
-    private int playerScore = 0;
-    private int opponentScore = 0;
+    private float playerScore = 0;
+    private float opponentScore = 0;
     private bool isPlayerReady = false;
     private bool isOpponentReady = false;
+    [SerializeField] bool didPlayerWin;
 
     void Start()
     {
@@ -91,22 +92,32 @@ public class CombatManager : MonoBehaviourPunCallbacks
             }
         }
 
+        if(playerRobotsAlive == 0)
+        {
+            didPlayerWin = false;
+        }
+        if(opponentRobotsAlive == 0)
+        {
+            didPlayerWin = true;
+        }
+        //XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+
         return playerRobotsAlive == 0 || opponentRobotsAlive == 0;
     }
 
     [PunRPC]
     void EndCombat()
     {
-        bool playerWon = CheckForWinner();
+        bool playerWon = didPlayerWin;
         if (playerWon)
         {
-            playerScore++;
+            playerScore += 0.25f;
             statusText.text = "¡Has ganado la ronda!";
             statusText2.text = statusText.text;
         }
         else
         {
-            opponentScore++;
+            opponentScore += 0.25f;
             statusText.text = "Has perdido la ronda.";
             statusText2.text = statusText.text;
         }

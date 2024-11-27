@@ -15,6 +15,7 @@ public class TapToPlace : MonoBehaviour
 
     void Awake()
     {
+        currentRobotStats = GetComponent<RobotStats>();
         mecanicaImage = FindObjectOfType<MecanicaImage>();
     }
 
@@ -36,7 +37,10 @@ public class TapToPlace : MonoBehaviour
         {
             if (hit.collider.CompareTag("Arena"))
             {
-                RobotStats newStats = prefab.GetComponent<RobotStats>();
+                // Instanciar el robot
+                GameObject spawnedRobot = PhotonNetwork.Instantiate(prefab.name, hit.point, Quaternion.identity);
+                spawnedRobot.GetComponent<RobotCombat>().robotStats = currentRobotStats;
+                RobotStats newStats = spawnedRobot.GetComponent<RobotStats>();
                 newStats.robotName = currentRobotStats.robotName;
                 newStats.attack = currentRobotStats.attack;
                 newStats.defense = currentRobotStats.defense;
@@ -45,9 +49,6 @@ public class TapToPlace : MonoBehaviour
                 newStats.criticalDamageMultiplier = currentRobotStats.criticalDamageMultiplier;
                 newStats.attackRange = currentRobotStats.attackRange;
                 newStats.moveSpeed = currentRobotStats.moveSpeed;
-                // Instanciar el robot
-                GameObject spawnedRobot = PhotonNetwork.Instantiate(prefab.name, hit.point, Quaternion.identity);
-                spawnedRobot.GetComponent<RobotCombat>().robotStats = currentRobotStats;
                 // Hacer que el robot sea hijo del objeto Arena
                 Transform arenaTransform = hit.collider.transform; // Obtiene la referencia del objeto Arena
                 spawnedRobot.transform.SetParent(arenaTransform, true); // Asigna el robot como hijo de la Arena

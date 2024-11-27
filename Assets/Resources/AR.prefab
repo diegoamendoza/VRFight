@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6242071906685486927}
   - component: {fileID: 6242071906685486924}
   - component: {fileID: 6242071906685486925}
+  - component: {fileID: 6107969458347254687}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -246,6 +247,9 @@ MonoBehaviour:
   UIHead: {fileID: 0}
   UIBody: {fileID: 0}
   UILegs: {fileID: 0}
+  UIHead2: {fileID: 0}
+  UIBody2: {fileID: 0}
+  UILegs2: {fileID: 0}
   Robots:
   - {fileID: 1343880809518638077, guid: 8447ec4d6dc15ec4f8ca94b4530e40df, type: 3}
   - {fileID: 4152644455020989681, guid: f5136ee2b79307f46b6b35d4255586d9, type: 3}
@@ -255,7 +259,9 @@ MonoBehaviour:
   - {fileID: 1880016283153829307, guid: 8902f8f7e16b7284cba99e3ed378bbc5, type: 3}
   - {fileID: 3976587968839853497, guid: f11f753869d1dcb418c5fbfd17d6a6dd, type: 3}
   - {fileID: 3827162187818335638, guid: 85d5728da5fc7ec41a548f7b485ff465, type: 3}
+  cardsUIAnimator: {fileID: 0}
   arTrackedImageManager: {fileID: 0}
+  tapToPlace: {fileID: 0}
 --- !u!114 &6242071906685486925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,9 +275,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastManager: {fileID: 6242071906685486923}
-  planeManager: {fileID: 6242071906685486922}
   prefab: {fileID: 954673070953627847, guid: 527241a8f0b7c8a4e98d7beb272a6b1d, type: 3}
   isReadyToPlace: 0
+  arCamera: {fileID: 0}
+  currentRobotStats: {fileID: 0}
+--- !u!114 &6107969458347254687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242071906685486919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4504d49ba8aa58438e00d592870d3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotName: 
+  attack: 0
+  defense: 0
+  health: 0
+  criticalChance: 0
+  criticalDamageMultiplier: 0
+  attackRange: 0
+  moveSpeed: 0
 --- !u!1 &6242071906915028181
 GameObject:
   m_ObjectHideFlags: 0

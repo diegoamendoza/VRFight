@@ -51,12 +51,12 @@ MonoBehaviour:
       m_GuidLow: 4837627795175479226
       m_GuidHigh: 18373970759413276602
     m_SerializedTextureGuid:
-      m_GuidLow: 4675941052890128793
-      m_GuidHigh: 4440863878595522760
+      m_GuidLow: 6625946339029566516
+      m_GuidHigh: 17837141949671379722
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
     m_Name: head-b
-    m_Texture: {fileID: 2800000, guid: 082ea199479d40e4c8b08c3b2b1ea13d, type: 3}
+    m_Texture: {fileID: 2800000, guid: eea8443417165bf40a93611619428af7, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5317010010153912793
       m_GuidHigh: 6812764544336813208
@@ -66,14 +66,44 @@ MonoBehaviour:
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
     m_Name: body-b
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 7d91f7b523390d7458e9047048702020, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5206693930425532074
       m_GuidHigh: 405301210411037092
     m_SerializedTextureGuid:
-      m_GuidLow: 6279335002404601165
-      m_GuidHigh: 2121056609272799896
+      m_GuidLow: 10620721941349926051
+      m_GuidHigh: 4192856596884167928
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
     m_Name: legs-b
-    m_Texture: {fileID: 2800000, guid: 5400bd4dadea572498223390bf816f1d, type: 3}
+    m_Texture: {fileID: 2800000, guid: ac5c04a362559364f81c6f33dc04303a, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5668201383640207330
+      m_GuidHigh: 10307707122483839667
+    m_SerializedTextureGuid:
+      m_GuidLow: 17245605974942080699
+      m_GuidHigh: 12059774395409544
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: head-c
+    m_Texture: {fileID: 2800000, guid: 58c6debbb343ef5488e4e8084dd82a00, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5728991699556140087
+      m_GuidHigh: 14185148054318565009
+    m_SerializedTextureGuid:
+      m_GuidLow: 978581656095769324
+      m_GuidHigh: 11006221344122990057
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: body-c
+    m_Texture: {fileID: 2800000, guid: db4d42ec9ed40d94e9edc5bffff3bd98, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5509400428804558193
+      m_GuidHigh: 2893174221097841537
+    m_SerializedTextureGuid:
+      m_GuidLow: 13102139299008150602
+      m_GuidHigh: 10296547079045302281
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: legs-c
+    m_Texture: {fileID: 2800000, guid: 3b10fc4a2646b5d409c894d303afe48e, type: 3}

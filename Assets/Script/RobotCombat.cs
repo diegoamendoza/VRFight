@@ -5,16 +5,16 @@ using Photon.Pun;
 
 public class RobotCombat : MonoBehaviourPunCallbacks
 {
-    public bool IsPlayerRobot; // Determina si el robot pertenece al jugador local
+    public bool IsPlayerRobot; 
     public bool IsAlive = true;
     public int baseHealth = 100;
     public int baseAttack = 10;
-    public GameObject projectilePrefab; // Prefab del proyectil
-    public Transform firePoint; // Punto desde donde se disparan los proyectiles
-    public float fireRate = 1f; // Tasa de disparo en segundos
-    public float detectionRange = 10f; // Rango para detectar enemigos
+    public GameObject projectilePrefab; 
+    public Transform firePoint; 
+    public float fireRate = 1f; 
+    public float detectionRange = 10f; 
 
-    public RobotStats robotStats; // Referencia al ScriptableObject de estadísticas
+    public RobotStats robotStats; 
 
     private int currentHealth;
     private Transform targetEnemy;
@@ -22,7 +22,15 @@ public class RobotCombat : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        
+        if(photonView.IsMine)
+        {
+            IsPlayerRobot = true;
+        }
+        else
+        {
+            IsPlayerRobot = false;
+        }
+        robotStats = GetComponent<RobotStats>();
         // Inicializa las estadísticas con los valores del ScriptableObject
         currentHealth = baseHealth + robotStats.health;
     }
@@ -39,9 +47,7 @@ public class RobotCombat : MonoBehaviourPunCallbacks
         }
     }
 
-    /// <summary>
-    /// Método que inicia el combate para el robot.
-    /// </summary>
+
     public void StartCombat()
     {
         isInCombat = true;
@@ -121,6 +127,7 @@ public class RobotCombat : MonoBehaviourPunCallbacks
         if (currentHealth <= 0 && IsAlive)
         {
             IsAlive = false;
+            
             CancelInvoke("ShootProjectile");
             photonView.RPC("OnDeathRPC", RpcTarget.All);
         }
