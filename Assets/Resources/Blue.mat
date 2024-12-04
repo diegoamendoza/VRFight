@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2 1
+  m_Name: Blue
   m_Shader: {fileID: 4800000, guid: d92832bd0edea6c4d87948601146ec0c, type: 3}
   m_ValidKeywords:
   - L_F_O_ON
@@ -216,7 +216,7 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 0}
     - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimLightColor: {r: 0.9811321, g: 0, b: 0, a: 1}
+    - _RimLightColor: {r: 0, g: 0.14117648, b: 0.98039216, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}

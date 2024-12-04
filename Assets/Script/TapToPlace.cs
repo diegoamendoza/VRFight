@@ -7,12 +7,14 @@ public class TapToPlace : MonoBehaviour
 {
     public ARRaycastManager raycastManager;
     public GameObject prefab;
+    public GameObject prefabObject;
     public bool isReadyToPlace = false;
+    public bool objectReady = false;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     private MecanicaImage mecanicaImage;
     public Camera arCamera;
     public RobotStats currentRobotStats; // Para almacenar las estadísticas del robot
-
+    
     void Awake()
     {
         currentRobotStats = GetComponent<RobotStats>();
@@ -25,6 +27,41 @@ public class TapToPlace : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
             PlaceObjectOnArena(touch);
+        }
+
+        if(Input.touchCount > 0 && objectReady)
+        {
+            Touch touch2 = Input.GetTouch(0);
+            PlaceObjectOnRobot(touch2);
+        }
+    }
+
+    public void PlaceObjectOnRobot(Touch touch)
+    {
+        Ray ray = arCamera.ScreenPointToRay(touch.position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if(hit.collider.CompareTag("Robot"))
+            {
+                PhotonView photonView = hit.collider.gameObject.GetComponent<PhotonView>();
+                GameObject spawnObject = PhotonNetwork.Instantiate(prefabObject.name, hit.point, Quaternion.identity);
+                RobotStats objectStats = spawnObject.GetComponent<RobotStats>();
+                int[] stats = new int[7];
+                stats[0] = objectStats.attack;
+                stats[1] = objectStats.defense;
+                stats[2] = objectStats.health;
+                stats[3] = objectStats.shield;
+
+                string pasive = spawnObject.GetComponent<ObjectPasive>().pasive;
+                photonView.RPC("SyncRobotStats", RpcTarget.All, stats);
+                photonView.RPC("SyncPasive", RpcTarget.All, pasive);
+                PhotonNetwork.Destroy(spawnObject);
+                objectReady = false;
+                mecanicaImage.cardsUIAnimator.SetTrigger("DesactivateCardD");
+                Debug.Log("Se agrego el objeto " + prefabObject.name);
+            }
         }
     }
 
@@ -40,25 +77,24 @@ public class TapToPlace : MonoBehaviour
                 // Instanciar el robot
                 GameObject spawnedRobot = PhotonNetwork.Instantiate(prefab.name, hit.point, Quaternion.identity);
                 spawnedRobot.GetComponent<RobotCombat>().robotStats = currentRobotStats;
-                RobotStats newStats = spawnedRobot.GetComponent<RobotStats>();
-                newStats.robotName = currentRobotStats.robotName;
-                newStats.attack = currentRobotStats.attack;
-                newStats.defense = currentRobotStats.defense;
-                newStats.health = currentRobotStats.health;
-                newStats.criticalChance = currentRobotStats.criticalChance;
-                newStats.criticalDamageMultiplier = currentRobotStats.criticalDamageMultiplier;
-                newStats.attackRange = currentRobotStats.attackRange;
-                newStats.moveSpeed = currentRobotStats.moveSpeed;
-                // Hacer que el robot sea hijo del objeto Arena
-                Transform arenaTransform = hit.collider.transform; // Obtiene la referencia del objeto Arena
-                spawnedRobot.transform.SetParent(arenaTransform, true); // Asigna el robot como hijo de la Arena
+
+                int[] stats = new int[7];
+                stats[0] = currentRobotStats.attack;
+                stats[1] = currentRobotStats.defense;
+                stats[2] = currentRobotStats.health;
+               
                 
-                // Guarda la posición local del robot respecto a la Arena
+               
+                Transform arenaTransform = hit.collider.transform;
+                spawnedRobot.transform.SetParent(arenaTransform, true); 
+                
+              
                 Vector3 localPosition = spawnedRobot.transform.localPosition;
                 Debug.Log(localPosition);
-                // Sincroniza la posición local del robot
+           
                 PhotonView photonView = spawnedRobot.GetComponent<PhotonView>();
                 photonView.RPC("SetRobotLocalPosition", RpcTarget.Others, localPosition);
+                photonView.RPC("SyncRobotStats", RpcTarget.All, stats);
                 
 
                 // Restablece la mecánica de selección de piezas

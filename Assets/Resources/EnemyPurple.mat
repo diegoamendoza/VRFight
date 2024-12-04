@@ -7,11 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 3
+  m_Name: EnemyPurple
   m_Shader: {fileID: 4800000, guid: d92832bd0edea6c4d87948601146ec0c, type: 3}
   m_ValidKeywords:
   - L_F_O_ON
   - L_F_RELGI_ON
+  - L_F_RL_ON
   - L_F_SS_ON
   m_InvalidKeywords:
   - _NORMALMAP
@@ -154,7 +155,7 @@ Material:
     - _L_F_NM: 0
     - _L_F_O: 1
     - _L_F_PT: 0
-    - _L_F_RL: 0
+    - _L_F_RL: 1
     - _L_F_SCT: 0
     - _L_F_SL: 0
     - _L_F_SON: 0
@@ -178,7 +179,7 @@ Material:
     - _OutlineExtrudeMethod: 1
     - _OutlineWidth: 3
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0.05
+    - _OutlineZPostionInCamera: 0
     - _OverallShadowColorPower: 1
     - _PSGLOTEX: 0
     - _PTexturePower: 0
@@ -188,7 +189,7 @@ Material:
     - _RefMetallic: 0
     - _RefVal: 0
     - _RimLightColorPower: 10
-    - _RimLightInLight: 1
+    - _RimLightInLight: 0
     - _RimLightSoftness: 1
     - _RimLightUnfill: 1.5
     - _SPECIN: 1
@@ -226,14 +227,14 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
-    - _EmissionColor: {r: 182.5993, g: 36.519863, b: 290.63724, a: 1}
+    - _EmissionColor: {r: 60.86642, g: 11.792869, b: 97.00585, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 0}
     - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimLightColor: {r: 0.8207547, g: 0, b: 0, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}

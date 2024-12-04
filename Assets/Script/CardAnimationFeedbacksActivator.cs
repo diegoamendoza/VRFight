@@ -5,8 +5,8 @@ using MoreMountains.Feedbacks;
 
 public class CardAnimationFeedbacksActivator : MonoBehaviour
 {
-    public MMF_Player feedbackA, feedbackB, feedbackC;
-    public GameObject cardA, cardB, cardC;
+    public MMF_Player feedbackA, feedbackB, feedbackC, feedbackD;
+    public GameObject cardA, cardB, cardC, cardD;
     public void ActivateCardAFeedback()
     {
         feedbackA.PlayFeedbacks();
@@ -21,6 +21,11 @@ public class CardAnimationFeedbacksActivator : MonoBehaviour
     public void ActivateCardCFeedback()
     {
         feedbackC.PlayFeedbacks();
+    }
+
+    public void ActivateCardDFeedback()
+    {
+        feedbackD.PlayFeedbacks();
     }
 
     void CheckForBandCactive()

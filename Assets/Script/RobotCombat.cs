@@ -5,34 +5,53 @@ using Photon.Pun;
 
 public class RobotCombat : MonoBehaviourPunCallbacks
 {
-    public bool IsPlayerRobot; 
+    public bool IsPlayerRobot;
     public bool IsAlive = true;
     public int baseHealth = 100;
     public int baseAttack = 10;
-    public GameObject projectilePrefab; 
-    public Transform firePoint; 
-    public float fireRate = 1f; 
-    public float detectionRange = 10f; 
+    public GameObject projectilePrefab;
+    public GameObject shield;
+    public Transform firePoint;
+    public float fireRate = 1f;
+    public float detectionRange = 10f;
 
-    public RobotStats robotStats; 
+    public Material enemyMaterialBlue;
+    public Material enemyMaterialPurple;
 
+    public RobotStats robotStats;
+    public HealthBar healthBar;
     private int currentHealth;
+    private int currentShield;
     private Transform targetEnemy;
     private bool isInCombat = false;
 
     private void Start()
     {
-        if(photonView.IsMine)
+        if (photonView.IsMine)
         {
             IsPlayerRobot = true;
         }
         else
         {
             IsPlayerRobot = false;
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer renderer in renderers)
+            {
+                if(renderer.material.name == "Blue")
+                {
+                    renderer.material = enemyMaterialBlue;
+                }
+                else
+                {
+                    renderer.material = enemyMaterialPurple;
+                }
+            }
         }
         robotStats = GetComponent<RobotStats>();
-        // Inicializa las estadísticas con los valores del ScriptableObject
+        
         currentHealth = baseHealth + robotStats.health;
+        currentShield = robotStats.shield;
     }
 
     private void Update()
@@ -118,16 +137,23 @@ public class RobotCombat : MonoBehaviourPunCallbacks
     {
         if (!photonView.IsMine) return;
 
-        // Aplica la defensa del robot para reducir el daño
-        int reducedDamage = Mathf.Max(damage - robotStats.defense, 1);
-        currentHealth -= reducedDamage;
+        if (robotStats.shield <= 0)
+        {
+            int reducedDamage = Mathf.Max(damage - robotStats.defense, 1);
+            currentHealth -= reducedDamage;
+        }
+        else
+        {
+            currentShield -= damage;
+        }
 
         photonView.RPC("UpdateHealthRPC", RpcTarget.All, currentHealth);
+        photonView.RPC("UpdateShield", RpcTarget.All, currentShield);
 
         if (currentHealth <= 0 && IsAlive)
         {
             IsAlive = false;
-            
+
             CancelInvoke("ShootProjectile");
             photonView.RPC("OnDeathRPC", RpcTarget.All);
         }
@@ -136,11 +162,28 @@ public class RobotCombat : MonoBehaviourPunCallbacks
     [PunRPC]
     void UpdateHealthRPC(int updatedHealth)
     {
+
         currentHealth = updatedHealth;
+        healthBar.UpdateHealthBar(currentHealth);
         if (currentHealth <= 0 && IsAlive)
         {
             IsAlive = false;
         }
+    }
+    [PunRPC]
+    void UpdateShield(int updatedShield)
+    {
+        currentShield = updatedShield;
+        if (currentShield <= 0)
+        {
+            shield.SetActive(false);
+        }
+    }
+
+
+    public void StartShield()
+    {
+        shield.SetActive(true);
     }
 
     [PunRPC]

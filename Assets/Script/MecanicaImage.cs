@@ -6,10 +6,13 @@ using MoreMountains.Feedbacks;
 
 public class MecanicaImage : MonoBehaviour
 {
-    public GameObject UIHead, UIBody, UILegs;
-    public GameObject UIHead2, UIBody2, UILegs2;
+    public GameObject UIHead, UIBody, UILegs,UIObject;
+    public GameObject UIHead2, UIBody2, UILegs2, UIObject2;
     public GameObject[] Robots;
+    public GameObject[] Objects;
     private Dictionary<string, int> pieceIdentifiers;
+    private Dictionary<string, int> objectIdentifiers;
+
     private Dictionary<string, RobotStats> pieceStats; // Diccionario para las estadísticas de las piezas
     private int headID = -1, bodyID = -1, legsID = -1;
     public Animator cardsUIAnimator;
@@ -37,10 +40,20 @@ public class MecanicaImage : MonoBehaviour
             { "body-0", new RobotStats { attack = 0, defense = 10 } },
             { "body-1", new RobotStats { attack = 0, defense = 5 } },
             { "body-2", new RobotStats { attack = 5, defense = 5 } },
-            { "legs-0", new RobotStats { attack = 0, defense = 2 } },
-            { "legs-1", new RobotStats { attack = 3, defense = 0 } },
+            { "legs-0", new RobotStats { attack = 0, defense = 5 } },
+            { "legs-1", new RobotStats { attack = 5, defense = 0 } },
             { "legs-2", new RobotStats { attack = 5, defense = 5 } }
         };
+
+        objectIdentifiers = new Dictionary<string, int>
+        {
+            {"object-0", 0},
+            {"object-1", 1},
+            {"object-2", 2},
+            {"object-3", 3},
+        };
+
+
     }
 
     private void OnEnable()
@@ -96,6 +109,17 @@ public class MecanicaImage : MonoBehaviour
             }
             legsID = pieceIdentifiers[imageName];
         }
+        else if (imageName.Contains("object"))
+        {
+            if(UIObject !=null)
+            {
+                UIObject.GetComponent<Image>().sprite = trackedSprite;
+                UIObject2.GetComponent<Image>().sprite = trackedSprite;
+                cardsUIAnimator.SetTrigger("showCardD");
+            }
+            tapToPlace.prefabObject = Objects[objectIdentifiers[imageName]];
+            tapToPlace.objectReady = true;
+        }
 
         if (headID != -1 && bodyID != -1 && legsID != -1)
         {
@@ -116,8 +140,7 @@ public class MecanicaImage : MonoBehaviour
             tapToPlace.currentRobotStats.attack = pieceStats["head-" + headID] != null ? pieceStats["head-" + headID].attack : 0;
             tapToPlace.currentRobotStats.defense = pieceStats["body-" + bodyID] != null ? pieceStats["body-" + bodyID].defense : 0;
             tapToPlace.currentRobotStats.health = 100; // Valor base de salud
-            tapToPlace.currentRobotStats.attackRange = 5; // Valor base de rango de ataque
-            tapToPlace.currentRobotStats.moveSpeed = 3; // Valor base de velocidad de movimiento
+
 
             // Ajusta las estadísticas según las piezas
             tapToPlace.currentRobotStats.attack += pieceStats["head-" + headID].attack + pieceStats["body-" + bodyID].attack;
@@ -126,9 +149,7 @@ public class MecanicaImage : MonoBehaviour
             tapToPlace.currentRobotStats = totalStats; // Asigna las estadísticas al prefab
             tapToPlace.isReadyToPlace = true;
 
-            tapToPlace.currentRobotStats.attack = 0;
-            tapToPlace.currentRobotStats.defense = 0;
-
+            
 
         }
     }
@@ -139,6 +160,9 @@ public class MecanicaImage : MonoBehaviour
         if (UIHead != null) UIHead.GetComponent<Image>().sprite = null;
         if (UIBody != null) UIBody.GetComponent<Image>().sprite = null;
         if (UILegs != null) UILegs.GetComponent<Image>().sprite = null;
+        cardsUIAnimator.SetTrigger("DesactivateCardA");
+        cardsUIAnimator.SetTrigger("DesactivateCardB");
+        cardsUIAnimator.SetTrigger("DesactivateCardC");
     }
 
     public void OnImageChanged(ARTrackedImagesChangedEventArgs args)

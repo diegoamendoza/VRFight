@@ -23,24 +23,24 @@ public class RobotAI : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void Update()
-    {
-        if (!photonView.IsMine) return; // Solo controlar los robots que son del jugador local
+    //private void Update()
+    //{
+    //    if (!photonView.IsMine) return; // Solo controlar los robots que son del jugador local
 
-        if (target != null)
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+    //    if (target != null)
+    //    {
+    //        float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-            if (distanceToTarget <= stats.attackRange)
-            {
-                Attack(target.GetComponent<RobotAI>());
-            }
-            else
-            {
-                MoveTowardsTarget();
-            }
-        }
-    }
+    //        if (distanceToTarget <= stats.attackRange)
+    //        {
+    //            Attack(target.GetComponent<RobotAI>());
+    //        }
+    //        else
+    //        {
+    //            MoveTowardsTarget();
+    //        }
+    //    }
+    //}
 
     private IEnumerator SearchForTarget()
     {
@@ -65,22 +65,22 @@ public class RobotAI : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void MoveTowardsTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * stats.moveSpeed * Time.deltaTime;
-    }
+    //private void MoveTowardsTarget()
+    //{
+    //    Vector3 direction = (target.position - transform.position).normalized;
+    //    transform.position += direction * stats.moveSpeed * Time.deltaTime;
+    //}
 
-    private void Attack(RobotAI enemy)
-    {
-        bool isCritical = Random.Range(0f, 100f) < stats.criticalChance;
-        int damage = isCritical ? Mathf.RoundToInt(stats.attack * stats.criticalDamageMultiplier) : stats.attack;
+    //private void Attack(RobotAI enemy)
+    //{
+    //    bool isCritical = Random.Range(0f, 100f) < stats.criticalChance;
+    //    int damage = isCritical ? Mathf.RoundToInt(stats.attack * stats.criticalDamageMultiplier) : stats.attack;
 
-        int finalDamage = Mathf.Max(0, damage - enemy.stats.defense);
-        enemy.TakeDamage(finalDamage);
+    //    int finalDamage = Mathf.Max(0, damage - enemy.stats.defense);
+    //    enemy.TakeDamage(finalDamage);
 
-        photonView.RPC("TakeDamage", RpcTarget.AllBuffered, finalDamage); // Sincroniza el daño en todos los jugadores
-    }
+    //    photonView.RPC("TakeDamage", RpcTarget.AllBuffered, finalDamage); // Sincroniza el daño en todos los jugadores
+    //}
 
     [PunRPC]
     public void TakeDamage(int damage)
