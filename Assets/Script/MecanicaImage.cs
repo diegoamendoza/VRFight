@@ -13,7 +13,7 @@ public class MecanicaImage : MonoBehaviour
     private Dictionary<string, int> pieceIdentifiers;
     private Dictionary<string, int> objectIdentifiers;
 
-    private Dictionary<string, RobotStats> pieceStats; // Diccionario para las estadísticas de las piezas
+    private Dictionary<int, RobotStats> pieceStats; // Diccionario para las estadísticas de las piezas
     private int headID = -1, bodyID = -1, legsID = -1;
     public Animator cardsUIAnimator;
     public ARTrackedImageManager arTrackedImageManager;
@@ -32,17 +32,12 @@ public class MecanicaImage : MonoBehaviour
             { "legs-a", 0 }, { "legs-b", 1 },{"legs-c",2}
         };
 
-        pieceStats = new Dictionary<string, RobotStats>
+        pieceStats = new Dictionary<int, RobotStats>
         {
-            { "head-0", new RobotStats { attack = 10, defense = 0 } },
-            { "head-1", new RobotStats { attack = 0, defense = 10 } },
-            { "head-2", new RobotStats { attack = 5, defense = 5 } },
-            { "body-0", new RobotStats { attack = 0, defense = 10 } },
-            { "body-1", new RobotStats { attack = 0, defense = 5 } },
-            { "body-2", new RobotStats { attack = 5, defense = 5 } },
-            { "legs-0", new RobotStats { attack = 0, defense = 5 } },
-            { "legs-1", new RobotStats { attack = 5, defense = 0 } },
-            { "legs-2", new RobotStats { attack = 5, defense = 5 } }
+            { 0, new RobotStats { attack = 10, defense = 0 } },
+            { 1, new RobotStats { attack = 0, defense = 10 } },
+            { 2, new RobotStats { attack = 5, defense = 5 } },
+
         };
 
         objectIdentifiers = new Dictionary<string, int>
@@ -137,14 +132,11 @@ public class MecanicaImage : MonoBehaviour
 
             // Calcular las estadísticas totales del robot
 
-            tapToPlace.currentRobotStats.attack = pieceStats["head-" + headID] != null ? pieceStats["head-" + headID].attack : 0;
-            tapToPlace.currentRobotStats.defense = pieceStats["body-" + bodyID] != null ? pieceStats["body-" + bodyID].defense : 0;
-            tapToPlace.currentRobotStats.health = 100; // Valor base de salud
-
 
             // Ajusta las estadísticas según las piezas
-            tapToPlace.currentRobotStats.attack += pieceStats["head-" + headID].attack + pieceStats["body-" + bodyID].attack;
-            tapToPlace.currentRobotStats.defense += pieceStats["body-" + bodyID].defense + pieceStats["legs-" + legsID].defense;
+            tapToPlace.currentRobotStats.attack += pieceStats[headID].attack + pieceStats[bodyID].attack + pieceStats[legsID].attack;
+            tapToPlace.currentRobotStats.defense += pieceStats[bodyID].defense + pieceStats[legsID].defense + pieceStats[headID].defense;
+            tapToPlace.currentRobotStats.health = 100; // Valor base de salud
 
             tapToPlace.currentRobotStats = totalStats; // Asigna las estadísticas al prefab
             tapToPlace.isReadyToPlace = true;
